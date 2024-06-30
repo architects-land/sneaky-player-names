@@ -1,6 +1,7 @@
 package me.leo21.sneaky_names.mixin;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -21,7 +22,9 @@ public abstract class PlayerNamesRendering<T extends Entity> {
 	private void renderLabelOrNot(T entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
 		if (!(entity instanceof PlayerEntity)) { return; }
 
-		PlayerEntity clientPlayer = MinecraftClient.getInstance().player;
+		MinecraftClient mc = MinecraftClient.getInstance();
+
+		PlayerEntity clientPlayer = mc.player;
 
 		if (clientPlayer == null) { return; }
 		if (entity == clientPlayer) { return; }
@@ -33,9 +36,10 @@ public abstract class PlayerNamesRendering<T extends Entity> {
 		}
 
 		World world = clientPlayer.getWorld();
+		Camera camera = mc.gameRenderer.getCamera();
 
 		BlockHitResult hitResult = world.raycast(new RaycastContext(
-				clientPlayer.getCameraPosVec(tickDelta),
+				camera.getPos(),
 				entity.getEyePos(),
 				RaycastContext.ShapeType.OUTLINE,
 				RaycastContext.FluidHandling.NONE,
