@@ -3,13 +3,13 @@
 	"id": "sneaky_player_names",
 	"version": "${version}",
 	"name": "Sneaky Player Names",
-	"description": "This mod hides player names if they’re not visible, as if they were sneaking.",
+	"description": "A client-side fabric mod hiding player names if they’re not in sight, or if they’re too far.",
 	"authors": [
 		"Léo-21"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/sneaky-player-names",
+		"sources": "https://github.com/architects-land/sneaky-player-names"
 	},
 	"license": "MIT",
 	"icon": "assets/sneaky_player_names/icon.png",
