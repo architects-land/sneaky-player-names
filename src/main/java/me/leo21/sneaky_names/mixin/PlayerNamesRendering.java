@@ -1,5 +1,6 @@
 package me.leo21.sneaky_names.mixin;
 
+import me.leo21.sneaky_names.SneakyPlayerNames;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -29,11 +30,15 @@ public abstract class PlayerNamesRendering<T extends Entity> {
 		if (clientPlayer == null) { return; }
 		if (entity == clientPlayer) { return; }
 
-		double maxDistance = 50;
-		if (clientPlayer.squaredDistanceTo(entity) > Math.pow(maxDistance, 2)) {
+		int maxDistance = SneakyPlayerNames.CONFIG.MAX_DISTANCE;
+		if (maxDistance == 0 ||
+				(maxDistance > 0 && clientPlayer.squaredDistanceTo(entity) > Math.pow(maxDistance, 2))
+		) {
 			ci.cancel();
 			return;
 		}
+
+		if (!SneakyPlayerNames.CONFIG.HIDE_PLAYER_NAMES) { return; }
 
 		World world = clientPlayer.getWorld();
 		Camera camera = mc.gameRenderer.getCamera();
