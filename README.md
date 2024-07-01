@@ -10,6 +10,9 @@ they’re too far.
 It makes the multiplayer experience more immersive by allowing you to sneak up 
 on other players.
 
+![Player with name](docs/gallery_1.png)
+![Player without name](docs/gallery_2.png)
+
 ## Mod Configuration
 
 A `sneaky_player_names.properties` config file will be automatically generated
